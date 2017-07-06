@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ArcManagedFBXTest</RootNamespace>
     <AssemblyName>ArcManagedFBXTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -48,7 +48,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
@@ -120,6 +120,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(TargetDir)\ArcManagedFBX.dll "C:\Users\richa\Documents\Development\Amabilis\3DC Extensions\AutoDeskFBXSDK"
+copy $(TargetDir)\ArcManagedFBX.pdb "C:\Users\richa\Documents\Development\Amabilis\3DC Extensions\AutoDeskFBXSDK"
+copy $(TargetDir)\ArcManagedFBX.Shared.dll "C:\Users\richa\Documents\Development\Amabilis\3DC Extensions\AutoDeskFBXSDK"
+copy $(TargetDir)\ArcManagedFBX.Shared.pdb "C:\Users\richa\Documents\Development\Amabilis\3DC Extensions\AutoDeskFBXSDK"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
