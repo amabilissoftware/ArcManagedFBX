@@ -1,4 +1,16 @@
 ![arcmanagedfbx](http://i.imgur.com/br4KwNr.png)
+
+====
+## Amabilis Changes
+I've made quite a few changes in support of exporting. No doubt they could be better since I am definitely NOT a C++ programmer.
+
+Btw, these are pretty helpful to know: (here showing how little I know about these things)
+
+//C#, value type passed by value : (int a) — C++ / CLI : the same : (int a)
+//C#, value type passed by ref : (ref int a) — C++ / CLI : the same : (int %a)
+//C#, reference type passed by value : (string a) — C++ / CLI : (string ^a)
+//C#, reference type passed by ref : (ref string a) — C++ / CLI : (string ^%a).
+
 ====
 ## Description
 A managed common-language runtime wrapper for the Autodesk FBX SDK 2015. Enables developers writing in C# or any other .NET supported language to work with the FBX SDK without having to use any other aspect of the CLR's platform invocation services.
@@ -18,3 +30,6 @@ A managed common-language runtime wrapper for the Autodesk FBX SDK 2015. Enables
 
 ## Shoutout
 https://github.com/returnString/ManagedFBX
+
+
+
