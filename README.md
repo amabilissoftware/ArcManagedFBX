@@ -6,10 +6,10 @@ I've made quite a few changes in support of exporting. No doubt they could be be
 
 Btw, these are pretty helpful to know: (here showing how little I know about these things)
 
-//C#, value type passed by value : (int a) — C++ / CLI : the same : (int a)
-//C#, value type passed by ref : (ref int a) — C++ / CLI : the same : (int %a)
-//C#, reference type passed by value : (string a) — C++ / CLI : (string ^a)
-//C#, reference type passed by ref : (ref string a) — C++ / CLI : (string ^%a).
+C#, value type passed by value : (int a) — C++ / CLI : the same : (int a)
+C#, value type passed by ref : (ref int a) — C++ / CLI : the same : (int %a)
+C#, reference type passed by value : (string a) — C++ / CLI : (string ^a)
+C#, reference type passed by ref : (ref string a) — C++ / CLI : (string ^%a).
 
 ====
 ## Description
