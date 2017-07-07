@@ -12,55 +12,37 @@ FBXVector::FBXVector(float64 x,float64 y,float64 z,float64 w)
 	this->w = w;
 }
 
+FBXVector::FBXVector(float64 x, float64 y, float64 z)
+{
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
+
 FBXVector::FBXVector(FbxVector4 vector)
 {
-
-}
-
-FBXVector::FBXVector(FBXVector^ other)
-{
-
-}
-
-FBXVector^ FBXVector::Cross(FBXVector^ other)
-{
-	return gcnew FBXVector();
-}
-
-float64 FBXVector::Dot(FBXVector^ other)
-{
-	return 0.0f;
+	this->x = vector.mData[0];
+	this->y = vector.mData[1];
+	this->z = vector.mData[2];
+	this->w = vector.mData[3];
 }
 
 FBXVector^ ArcManagedFBX::FBXVector::ConvertVector2(FbxVector2* instance)
 {
+	// does this work? probaby 
 	if (instance != nullptr)
 		return gcnew FBXVector(instance->mData[0],instance->mData[1],0.f,0.f);
 
 	return gcnew FBXVector(0.f,0.f,0.f,0.f);
 }
 
-FBXVector^ ArcManagedFBX::FBXVector::ConvertVector3(FbxDouble3* instance)
-{
-	return FBXVector::Zero;
-}
-
-FBXVector^ ArcManagedFBX::FBXVector::ConvertVector4(FbxDouble4* instance)
-{
-	return FBXVector::Zero;
-}
-
 FBXVector^ ArcManagedFBX::FBXVector::ConvertVector4(FbxVector4* instance)
 {
+	// does this work? probably
 	if (instance != nullptr)
 		return gcnew FBXVector(instance->mData[0],instance->mData[1],instance->mData[2],instance->mData[3]);
 
 	return gcnew FBXVector(0.f,0.f,0.f,0.f);
-}
-
-FBXVector^ ArcManagedFBX::FBXVector::ConvertVector2(FbxDouble2* instance)
-{
-	return FBXVector::Zero;
 }
 
 FbxVector2 ArcManagedFBX::FBXVector::GenerateVector2()

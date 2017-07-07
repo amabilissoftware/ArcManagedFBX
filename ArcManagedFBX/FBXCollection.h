@@ -15,6 +15,9 @@ namespace ArcManagedFBX
 		virtual ~FBXCollection();
 		!FBXCollection();
 
+		virtual bool AddMember(FBXObject^ pMember);
+
+
 	private:
 		ARC_CHILD_CAST(NativeObject,FbxCollection,FBXCollection)
 	

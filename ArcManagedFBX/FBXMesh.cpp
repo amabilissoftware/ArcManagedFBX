@@ -27,6 +27,27 @@ void FBXMesh::Compact()
 	this->GetFBXMesh()->Compact();
 }
 
+void FBXMesh::InitTextureUV(int32 count)
+{
+	this->GetFBXMesh()->InitTextureUV(count);
+}
+
+void FBXMesh::InitTextureUVIndices(EMappingMode pMappingMode)
+{
+	this->GetFBXMesh()->InitTextureUVIndices((fbxsdk::FbxLayerElement::EMappingMode)pMappingMode);
+} 
+
+void FBXMesh::InitMaterialIndices(EMappingMode pMappingMode)
+{
+	this->GetFBXMesh()->InitMaterialIndices((fbxsdk::FbxLayerElement::EMappingMode)pMappingMode);
+}
+
+void FBXMesh::AddTextureUV(FBXVector2^ UV)
+{
+	FbxVector2 generatedVector = UV->GenerateVector2();
+	this->GetFBXMesh()->AddTextureUV(generatedVector);
+}
+
 void FBXMesh::AddPolygon(int32 pIndex, int32 pTextureUVIndex)
 {
 	this->GetFBXMesh()->AddPolygon(pIndex,pTextureUVIndex);

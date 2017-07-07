@@ -8,9 +8,9 @@ namespace ArcManagedFBX
 		public ref class FBXExporter : FBXIOBase
 		{
 		public:
-			ARC_FBXSDK_FBXOBJECT_IMPLEMENT(FBXExporter,FBXIOBase,FbxExporter)
+			ARC_DEFAULT_CONSTRUCTORS(FBXExporter)
 
-			FBXExporter();
+			ARC_FBXSDK_CLASS_DECLARE(FBXExporter, FbxExporter, FBXIOBase)
 
 			FBXIOSettings^ GetIOSettings();
 

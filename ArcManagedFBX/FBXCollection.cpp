@@ -18,6 +18,11 @@ FBXCollection::!FBXCollection()
 
 }
 
+bool ArcManagedFBX::FBXCollection::AddMember(FBXObject ^ pMember)
+{
+	return this->m_NativeObject->ConnectSrcObject(pMember->GetFBXObject());
+}
+
 FBXCollection::FBXCollection(FbxCollection* instance) : FBXObject(instance)
 {
 }

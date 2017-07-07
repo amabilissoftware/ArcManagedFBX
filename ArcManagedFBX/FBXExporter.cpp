@@ -3,16 +3,31 @@
 #include "FBXIOBase.h"
 #include "FBXExporter.h"
 #include "FBXDocument.h"
+#include "FBXManager.h"
 
+
+using namespace ArcManagedFBX; 
 using namespace ArcManagedFBX::IO;
 using namespace ArcManagedFBX::Utility;
 
-ArcManagedFBX::IO::FBXExporter::FBXExporter() : FBXIOBase()
+ARC_FBXSDK_CLASS_IMPLEMENT(FBXExporter, FbxExporter, FBXIOBase)
+
+ARC_DEFAULT_INTERNAL_CONSTRUCTOR_INHERIT_IMPL(FBXExporter, FBXIOBase, FbxExporter)
+
+
+FBXExporter::FBXExporter() : FBXIOBase()
 {
+
 }
 
-ArcManagedFBX::IO::FBXExporter::FBXExporter(FbxExporter* instance) : FBXIOBase(instance)
+FBXExporter::!FBXExporter()
 {
+
+}
+
+FBXExporter::~FBXExporter()
+{
+
 }
 
 // Set the IO Settings that we are to use

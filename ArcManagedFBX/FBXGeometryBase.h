@@ -25,9 +25,11 @@ namespace ArcManagedFBX
 		
 		virtual void InitControlPoints(int32 count);
 
-		void SetControlPoint(const FBXVector^ controlPoint, const FBXVector^ normal);
+		void SetControlPointAt(FBXVector^ controlPoint, FBXVector^ normal, int32 index);
 
 		void SetControlPointAt(FBXVector^ controlPoint, int32 index);
+
+		void SetControlPointNormalAt(FBXVector^ normal, int32 index);
 
 		int32 GetElementVertexColorCount();
 

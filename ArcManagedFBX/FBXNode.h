@@ -6,8 +6,13 @@
 #include "FBXObject.h"
 #include "FBXMesh.h"
 #include "FBXManager.h"
+#include "FBXSurfaceMaterial.h"
+#include "FBXAnimLayer.h"
+#include "FBXAnimCurveNode.h"
+#include "FBXAnimCurve.h"
 
 using namespace System::Runtime::InteropServices;
+using namespace ArcManagedFBX::Layers;
 
 namespace ArcManagedFBX
 {
@@ -15,7 +20,11 @@ namespace ArcManagedFBX
 	public ref class FBXNode : public FBXObject
 	{
 	public:
-		ARC_DEFAULT_CONSTRUCTORS(FBXNode)
+		ARC_FBXSDK_FBXOBJECT_IMPLEMENT(FBXNode, FBXObject, FbxNode)
+
+		int AddMaterial(FBXSurfaceMaterial^ material);
+
+		bool RemoveMaterial(FBXSurfaceMaterial^ material);
 
 		// Add a child node to this node.
 		void AddChild(FBXNode^ Node);
@@ -36,6 +45,8 @@ namespace ArcManagedFBX
 
 		FBXVector GetPostTargetRotation();
 
+		void SetRotationOrder(EOrder pRotationOrder);
+
 		void SetTargetUp(FBXNode^ pNode);
 
 		FBXNode^ GetTargetUp();
@@ -54,9 +65,20 @@ namespace ArcManagedFBX
 
 		FBXNodeAttribute^ SetNodeAttribute(FBXNodeAttribute^ attribute);
 
+		bool AddNodeAttribute(FBXNodeAttribute^ attribute);
+
 		FBXNodeAttribute^ GetNodeAttribute();
 
-		// The attribute count
+		void LclTranslationSet(FBXVector vector);
+		FBXAnimCurveNode^ LclTranslationGetCurveNode(FBXAnimLayer^ animLayer);
+		FBXAnimCurveNode^ LclRotationGetCurveNode(FBXAnimLayer^ animLayer);
+		FBXAnimCurve^ LclTranslationGetCurve(FBXAnimLayer^ animLayer, String^ channel);
+		FBXAnimCurve^ LclRotationGetCurve(FBXAnimLayer^ animLayer, String^ channel);
+		void LclRotationSet(FBXVector vector);
+		ArcManagedFBX::FBXVector ArcManagedFBX::FBXNode::LclTranslationGet();
+		ArcManagedFBX::FBXVector ArcManagedFBX::FBXNode::LclRotationGet();
+
+			// The attribute count
 		int32 GetNodeAttributeCount();
 		int32 GetDefaultNodeAttributeIndex();
 

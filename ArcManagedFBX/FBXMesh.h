@@ -1,6 +1,8 @@
 #pragma once
 
 #include "FBXGeometry.h"
+#include "FBXVector2.h"
+#include "FBXTypes.h"
 
 // The mesh implementation from FBX
 namespace ArcManagedFBX
@@ -8,6 +10,7 @@ namespace ArcManagedFBX
 	public ref class FBXMesh : public FBXGeometry
 	{
 	public:
+		ARC_FBXSDK_FBXOBJECT_IMPLEMENT(FBXMesh, FBXGeometry, FbxMesh)
 		ARC_DEFAULT_CONSTRUCTORS(FBXMesh)
 
 		ARC_CLR_CHILD_CAST(FBXMesh,FBXNodeAttribute,FbxMesh)
@@ -23,6 +26,14 @@ namespace ArcManagedFBX
 		bool IsTriangleMesh();
 
 		virtual void Compact();
+
+		void InitTextureUV(int32 Count);
+
+		void InitTextureUVIndices(EMappingMode pMappingMode);
+
+		void AddTextureUV(FBXVector2^ pUV);
+
+		void InitMaterialIndices(EMappingMode pMappingMode);
 
 		ARC_INLINE int32 GetShapeCount();
 

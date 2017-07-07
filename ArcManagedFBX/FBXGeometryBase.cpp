@@ -40,29 +40,29 @@ bool FBXGeometryBase::CastShadow::get()
 {
 	ARC_CHECK_AND_THROW(this->GetFBXGeometryBase() == nullptr, "")
 
-	return this->GetFBXGeometryBase()->CastShadow.Get();
+		return this->GetFBXGeometryBase()->CastShadow.Get();
 }
 
 void ArcManagedFBX::FBXGeometryBase::InitBinormals(int32 count, const int32 layerindex, String^ name)
 {
 	ARC_CHECK_AND_THROW(this->GetFBXGeometryBase() == nullptr, "")
 
-	const char* nativeName = StringHelper::ToNative(name);
-	this->GetFBXGeometryBase()->InitBinormals(count,layerindex,nativeName);
+		const char* nativeName = StringHelper::ToNative(name);
+	this->GetFBXGeometryBase()->InitBinormals(count, layerindex, nativeName);
 }
 
 void ArcManagedFBX::FBXGeometryBase::InitTangents(FBXGeometryBase^ source, const int32 layerindex)
 {
 	ARC_CHECK_AND_THROW(this->GetFBXGeometryBase() == nullptr, "")
 
-	this->GetFBXGeometryBase()->InitTangents(source->GetFBXGeometryBase(),layerindex);
+		this->GetFBXGeometryBase()->InitTangents(source->GetFBXGeometryBase(), layerindex);
 }
 
 void ArcManagedFBX::FBXGeometryBase::InitTangents(int32 count, int32 layerindex, String^ name)
 {
 	ARC_CHECK_AND_THROW(this->GetFBXGeometryBase() == nullptr, "")
 
-	this->GetFBXGeometryBase()->InitTangents(count,layerindex,StringHelper::ToNative(name));
+		this->GetFBXGeometryBase()->InitTangents(count, layerindex, StringHelper::ToNative(name));
 }
 
 void ArcManagedFBX::FBXGeometryBase::InitNormals(int32 count)
@@ -75,11 +75,6 @@ void ArcManagedFBX::FBXGeometryBase::InitNormals(FBXGeometryBase^ source)
 	this->GetFBXGeometryBase()->InitNormals(source->GetFBXGeometryBase());
 }
 
-void ArcManagedFBX::FBXGeometryBase::SetControlPoint(const FBXVector^ controlPoint, const FBXVector^ normal)
-{
-	
-}
-
 ArcManagedFBX::FBXVector ArcManagedFBX::FBXGeometryBase::GetControlPointAt(int32 index)
 {
 	return FBXVector();
@@ -87,7 +82,7 @@ ArcManagedFBX::FBXVector ArcManagedFBX::FBXGeometryBase::GetControlPointAt(int32
 
 int32 ArcManagedFBX::FBXGeometryBase::GetElementPolygonGroupCount()
 {
-	ARC_CHECK_AND_THROW(this->GetFBXGeometryBase() == nullptr,"The element polygon group count is null or empty");
+	ARC_CHECK_AND_THROW(this->GetFBXGeometryBase() == nullptr, "The element polygon group count is null or empty");
 
 	return this->GetFBXGeometryBase()->GetElementPolygonGroupCount();
 }
@@ -105,7 +100,7 @@ void ArcManagedFBX::FBXGeometryBase::ComputeBBox()
 array<FBXVector>^ ArcManagedFBX::FBXGeometryBase::GetControlPoints(FBXStatus^ status)
 {
 	// Retrieve the total count of control points that exist.
-	int32 controlPointsCount  = this->GetFBXGeometryBase()->GetControlPointsCount();
+	int32 controlPointsCount = this->GetFBXGeometryBase()->GetControlPointsCount();
 	array<FBXVector>^ outputVectors = gcnew array<FBXVector>(controlPointsCount);
 
 	// Retrieve the control points
@@ -117,7 +112,7 @@ array<FBXVector>^ ArcManagedFBX::FBXGeometryBase::GetControlPoints(FBXStatus^ st
 		controlPointsHandle = this->GetFBXGeometryBase()->GetControlPoints(0);
 
 	// Iterate over the control points and store them into the array
-	for(uint32 i = 0; i < (uint32)controlPointsCount; i++)
+	for (uint32 i = 0; i < (uint32)controlPointsCount; i++)
 		outputVectors[i] = *FBXVector::ConvertVector4(&controlPointsHandle[i]);
 
 	return outputVectors;
@@ -131,7 +126,20 @@ void ArcManagedFBX::FBXGeometryBase::InitControlPoints(int32 count)
 void ArcManagedFBX::FBXGeometryBase::SetControlPointAt(FBXVector^ controlPoint, int32 index)
 {
 	FbxVector4 generatedVector = controlPoint->GenerateVector4();
-	this->GetFBXGeometryBase()->SetControlPointAt(generatedVector,index);
+	this->GetFBXGeometryBase()->SetControlPointAt(generatedVector, index);
+}
+
+void ArcManagedFBX::FBXGeometryBase::SetControlPointNormalAt(FBXVector^ normal, int32 index)
+{
+	FbxVector4 generatedVector = normal->GenerateVector4();
+	this->GetFBXGeometryBase()->SetControlPointNormalAt(generatedVector, index, false);
+}
+
+void ArcManagedFBX::FBXGeometryBase::SetControlPointAt(FBXVector^ controlPoint, FBXVector^ normal, int32 index)
+{
+	FbxVector4 generatedVector = controlPoint->GenerateVector4();
+	FbxVector4 generatedVector2 = normal->GenerateVector4();
+	this->GetFBXGeometryBase()->SetControlPointAt(generatedVector, generatedVector2, index, false);
 }
 
 int32 ArcManagedFBX::FBXGeometryBase::GetElementVertexColorCount()

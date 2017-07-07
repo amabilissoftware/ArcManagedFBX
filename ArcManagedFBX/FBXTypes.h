@@ -4,6 +4,40 @@ namespace ArcManagedFBX
 {
 	namespace Types
 	{
+		public enum class EInterpolationType
+		{
+			eInterpolationConstant = 0x00000002,	//!< Constant value until next key.
+			eInterpolationLinear = 0x00000004,		//!< Linear progression to next key.
+			eInterpolationCubic = 0x00000008		//!< Cubic progression to next key.
+		};
+
+		public enum class EType
+		{
+			eNone = 0,
+			// System or user
+			eSystem = 1 << 0,
+			eUser = 1 << 1,
+			eSystemOrUser = eUser | eSystem,
+			// Type of Link
+			eReference = 1 << 2,
+			eContains = 1 << 3,
+			eData = 1 << 4,
+			eLinkType = eReference | eContains | eData,
+			eDefault = eUser | eReference,
+			eUnidirectional = 1 << 7
+		};
+
+		public enum class EOrder
+		{
+			eOrderXYZ,
+			eOrderXZY,
+			eOrderYZX,
+			eOrderYXZ,
+			eOrderZXY,
+			eOrderZYX,
+			eOrderSphericXYZ
+		};
+
 		public enum class EMarkerType
 		{
 			eStandard, 
@@ -26,6 +60,12 @@ namespace ArcManagedFBX
 			eSquare,
 			eStick,
 			eNone
+		};
+
+		public enum class EMaterialUse
+		{
+			eModelMaterial,		//! Texture uses model material.
+			eDefaultMaterial	//! Texture does not use model material.
 		};
 
 		public enum class EFbxType
@@ -108,6 +148,28 @@ namespace ArcManagedFBX
 			eDirect,
 			eIndex,
 			eIndexToDirect
+		};
+
+		public enum class ETextureUse
+		{
+			eStandard,					//! Standard texture use (ex. image)
+			eShadowMap,					//! Shadow map
+			eLightMap,					//! Light map
+			eSphericalReflectionMap,	//! Spherical reflection map: Object reflects the contents of the scene
+			eSphereReflectionMap,		//! Sphere reflection map: Object reflects the contents of the scene from only one point of view
+			eBumpNormalMap				//! Bump map: Texture contains two direction vectors, that are used to convey relief in a texture.
+		};
+
+		public enum class EMappingType
+		{
+			eNull,			//! No texture mapping defined.
+			ePlanar,		//! Apply texture to the model viewed as a plane.
+			eSpherical,		//! Wrap texture around the model as if it was a sphere.
+			eCylindrical,	//! Wrap texture around the model as if it was a cylinder.
+			eBox,			//! Wrap texture around the model as if it was a box.
+			eFace,			//! Apply texture to the model viewed as a face.
+			eUV,			//! Apply texture to the model according to UVs.
+			eEnvironment	//! Texture is an environment map.
 		};
 
 		public enum class EMappingMode

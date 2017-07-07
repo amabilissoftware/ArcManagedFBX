@@ -16,22 +16,22 @@ using namespace ArcManagedFBX::Utility;
 using namespace System;
 using namespace System::Text;
 
-FBXNode::FBXNode() : FBXObject()
-{
-
-}
-
-FBXNode::~FBXNode()
-{
-
-}
-
-FBXNode::!FBXNode()
-{
-}
-
 FBXNode::FBXNode(FbxNode* instance) : FBXObject(instance)
 {
+}
+
+int FBXNode::AddMaterial(FBXSurfaceMaterial^ material)
+{
+	ARC_CHECK_AND_THROW(this->GetFBXNode() == nullptr, "This FBX node has not been properly initialized. Check and try again")
+
+	return this->GetFBXNode()->AddMaterial(material->GetFBXSurfaceMaterial());
+}
+
+bool FBXNode::RemoveMaterial(FBXSurfaceMaterial^ material)
+{
+	ARC_CHECK_AND_THROW(this->GetFBXNode() == nullptr, "This FBX node has not been properly initialized. Check and try again")
+
+	return this->GetFBXNode()->RemoveMaterial(material->GetFBXSurfaceMaterial());
 }
 
 void FBXNode::AddChild(FBXNode^ node)
@@ -107,6 +107,13 @@ FBXNodeAttribute^ ArcManagedFBX::FBXNode::SetNodeAttribute(FBXNodeAttribute^ att
 	return gcnew FBXNodeAttribute(this->GetFBXNode()->SetNodeAttribute(attribute->GetFBXNodeAttribute()));
 }
 
+bool ArcManagedFBX::FBXNode::AddNodeAttribute(FBXNodeAttribute^ attribute)
+{
+	ARC_CHECK_AND_THROW(this->GetFBXNode() == nullptr, "This FBX node has not been properly initialized. Check and try again")
+
+	return this->GetFBXNode()->AddNodeAttribute(attribute->GetFBXNodeAttribute());
+}
+
 ArcManagedFBX::Types::EShadingMode ArcManagedFBX::FBXNode::GetShadingMode()
 {
 	ARC_CHECK_AND_THROW(this->GetFBXNode() == nullptr, "This FBX node has not been properly initialized. Check and try again")
@@ -136,7 +143,7 @@ ArcManagedFBX::FBXVector ArcManagedFBX::FBXNode::GetTargetUpVector()
 
 void ArcManagedFBX::FBXNode::SetTargetUpVector(FBXVector vector)
 {
-
+	
 }
 
 FBXNode^ ArcManagedFBX::FBXNode::GetTargetUp()
@@ -154,9 +161,58 @@ ArcManagedFBX::FBXVector ArcManagedFBX::FBXNode::GetPostTargetRotation()
 	return FBXVector(this->GetFBXNode()->GetPostTargetRotation());
 }
 
+void ArcManagedFBX::FBXNode::SetRotationOrder(EOrder pRotationOrder)
+{
+	//this->GetFBXNode()->RotationOrder.Set((fbxsdk::FbxEuler::EOrder)pRotationOrder);
+	this->GetFBXNode()->RotationOrder.Set(eEulerZXY);
+	//throw gcnew System::NotImplementedException();
+}
+
 void ArcManagedFBX::FBXNode::SetPostTargetRotation(FBXVector vector)
 {
 	// TODO:
+}
+
+
+
+ArcManagedFBX::FBXVector ArcManagedFBX::FBXNode::LclTranslationGet()
+{
+	return FBXVector(this->GetFBXNode()->LclTranslation.Get());
+}
+
+void ArcManagedFBX::FBXNode::LclTranslationSet(FBXVector vector)
+{
+	this->GetFBXNode()->LclTranslation.Set(FbxVector4(vector.GenerateVector4()));
+}
+
+FBXAnimCurveNode ^ ArcManagedFBX::FBXNode::LclTranslationGetCurveNode(FBXAnimLayer ^ animLayer)
+{
+	return gcnew FBXAnimCurveNode(this->GetFBXNode()->LclTranslation.GetCurveNode(animLayer->GetFBXAnimLayer(), true));
+}
+
+FBXAnimCurveNode ^ ArcManagedFBX::FBXNode::LclRotationGetCurveNode(FBXAnimLayer ^ animLayer)
+{
+	return gcnew FBXAnimCurveNode(this->GetFBXNode()->LclRotation.GetCurveNode(animLayer->GetFBXAnimLayer(), true));
+}
+
+FBXAnimCurve ^ ArcManagedFBX::FBXNode::LclTranslationGetCurve(FBXAnimLayer ^ animLayer, String^ channel)
+{
+	return gcnew FBXAnimCurve(this->GetFBXNode()->LclTranslation.GetCurve(animLayer->GetFBXAnimLayer(), StringHelper::ToNative(channel) , true));
+}
+
+FBXAnimCurve ^ ArcManagedFBX::FBXNode::LclRotationGetCurve(FBXAnimLayer ^ animLayer, String^ channel)
+{
+	return gcnew FBXAnimCurve(this->GetFBXNode()->LclRotation.GetCurve(animLayer->GetFBXAnimLayer(), StringHelper::ToNative(channel), true));
+}
+
+ArcManagedFBX::FBXVector ArcManagedFBX::FBXNode::LclRotationGet()
+{
+	return FBXVector(this->GetFBXNode()->LclRotation.Get());
+}
+
+void ArcManagedFBX::FBXNode::LclRotationSet(FBXVector vector)
+{
+	this->GetFBXNode()->LclRotation.Set(FbxVector4(vector.GenerateVector4()));
 }
 
 FBXNode^ ArcManagedFBX::FBXNode::GetTarget()

@@ -11,6 +11,8 @@ namespace ArcManagedFBX
 		public ref class FBXAnimStack : public FBXCollection
 		{
 		public:
+			ARC_FBXSDK_FBXOBJECT_IMPLEMENT(FBXAnimStack, FBXObject, FbxAnimStack)
+
 			ARC_DEFAULT_CONSTRUCTORS(FBXAnimStack)
 		
 		private:

@@ -13,6 +13,7 @@ namespace ArcManagedFBX
 		public ref class FBXAnimLayer : public FBXCollection
 		{
 		public:
+			ARC_FBXSDK_FBXOBJECT_IMPLEMENT(FBXAnimLayer, FBXObject, FbxAnimLayer)
 			FBXAnimLayer();
 			virtual ~FBXAnimLayer();
 			!FBXAnimLayer();
