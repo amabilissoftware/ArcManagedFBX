@@ -69,6 +69,8 @@ namespace ArcManagedFBX
 
 		FBXNodeAttribute^ GetNodeAttribute();
 
+		FBXNodeAttribute^ GetNodeAttributeByIndex(int32 index);
+
 		void LclTranslationSet(FBXVector vector);
 		FBXAnimCurveNode^ LclTranslationGetCurveNode(FBXAnimLayer^ animLayer);
 		FBXAnimCurveNode^ LclRotationGetCurveNode(FBXAnimLayer^ animLayer);

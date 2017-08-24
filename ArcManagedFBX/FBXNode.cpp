@@ -100,6 +100,51 @@ FBXNodeAttribute^ ArcManagedFBX::FBXNode::GetNodeAttribute()
 	return gcnew FBXNodeAttribute(this->GetFBXNode()->GetNodeAttribute());
 }
 
+FBXNodeAttribute ^ ArcManagedFBX::FBXNode::GetNodeAttributeByIndex(int32 index)
+{
+	ARC_CHECK_AND_THROW(this->GetFBXNode() == nullptr, "This FBX node has not been properly initialized. Check and try again")
+
+		FbxNodeAttribute* attributeInstance = this->GetFBXNode()->GetNodeAttributeByIndex(index);
+
+	// Be sure to cast the value properly into the right clr type otherwise we end up in a scenario where we have to instantiate new objects on the heap.
+	switch (this->GetFBXNode()->GetNodeAttribute()->GetAttributeType())
+	{
+	case FbxNodeAttribute::EType::eLight:
+		return FBXNodeAttribute::CreateNodeAttribute<FBXLight^>(attributeInstance);
+		break;
+
+	case FbxNodeAttribute::EType::eBoundary:
+		return FBXNodeAttribute::CreateNodeAttribute<FBXBoundary^>(attributeInstance);
+		break;
+
+	case FbxNodeAttribute::EType::eMesh:
+		return FBXNodeAttribute::CreateNodeAttribute<FBXMesh^>(attributeInstance);
+		break;
+
+	case FbxNodeAttribute::EType::eSkeleton:
+		return FBXNodeAttribute::CreateNodeAttribute<FBXSkeleton^>(attributeInstance);
+		break;
+
+	case FbxNodeAttribute::EType::eCamera:
+		return FBXNodeAttribute::CreateNodeAttribute<FBXCamera^>(attributeInstance);
+		break;
+
+	case FbxNodeAttribute::EType::eLine:
+		return FBXNodeAttribute::CreateNodeAttribute<FBXLine^>(attributeInstance);
+		break;
+
+	case FbxNodeAttribute::EType::eShape:
+		return FBXNodeAttribute::CreateNodeAttribute<FBXShape^>(attributeInstance);
+		break;
+
+	case FbxNodeAttribute::EType::eLODGroup:
+		return FBXNodeAttribute::CreateNodeAttribute<FBXLODGroup^>(attributeInstance);
+		break;
+	}
+
+	return gcnew FBXNodeAttribute(this->GetFBXNode()->GetNodeAttribute());
+}
+
 FBXNodeAttribute^ ArcManagedFBX::FBXNode::SetNodeAttribute(FBXNodeAttribute^ attribute)
 {
 	ARC_CHECK_AND_THROW(this->GetFBXNode() == nullptr, "This FBX node has not been properly initialized. Check and try again")
