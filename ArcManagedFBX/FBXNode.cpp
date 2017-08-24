@@ -18,6 +18,7 @@ using namespace System::Text;
 
 FBXNode::FBXNode(FbxNode* instance) : FBXObject(instance)
 {
+
 }
 
 int FBXNode::AddMaterial(FBXSurfaceMaterial^ material)
