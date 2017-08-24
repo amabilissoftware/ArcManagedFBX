@@ -33,7 +33,7 @@ namespace ArcManagedFBX
 
 		int32 GetElementVertexColorCount();
 
-		FBXVector GetControlPointAt(int32 index);
+		//FBXVector GetControlPointAt(int32 index);
 
 		int32 GetElementPolygonGroupCount();
 

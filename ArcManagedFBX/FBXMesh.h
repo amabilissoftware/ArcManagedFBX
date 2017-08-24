@@ -55,13 +55,13 @@ namespace ArcManagedFBX
 
 		array<int32>^ GetPolygonVertices();
 		
-		bool GetPolygonVertexNormal(int32 polygonIndex, int32 vertexIndex, FBXVector^ normal);
+		FBXVector GetPolygonVertexNormal2(int32 polygonIndex, int32 vertexIndex);
 
-		bool GetPolygonVertexNormals(array<FBXVector>^% normals);
+		//bool GetPolygonVertexNormals(array<FBXVector>^% normals);
 
-		bool GetPolygonVertexUV(int32 polygonindex, int32 vertexindex, String^ uvSetName, FBXVector uv, bool^ unmapped);
+		FBXVector GetPolygonVertexUV2(int32 polygonindex, int32 vertexindex, String^ uvSetName);
 
-		bool GetPolygonVertexUVs(String^ uvSetName, array<FBXVector>^ uvs, array<int>^ unMappedUVId);
+		//bool GetPolygonVertexUVs(String^ uvSetName, array<FBXVector>^ uvs, array<int>^ unMappedUVId);
 
 		bool GenerateTangetsData(String^ uvSetName, bool overWrite);
 

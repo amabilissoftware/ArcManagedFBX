@@ -75,10 +75,10 @@ void ArcManagedFBX::FBXGeometryBase::InitNormals(FBXGeometryBase^ source)
 	this->GetFBXGeometryBase()->InitNormals(source->GetFBXGeometryBase());
 }
 
-ArcManagedFBX::FBXVector ArcManagedFBX::FBXGeometryBase::GetControlPointAt(int32 index)
-{
-	return FBXVector();
-}
+//ArcManagedFBX::FBXVector ArcManagedFBX::FBXGeometryBase::GetControlPointAt(int32 index)
+//{
+//	return FBXVector();
+//}
 
 int32 ArcManagedFBX::FBXGeometryBase::GetElementPolygonGroupCount()
 {

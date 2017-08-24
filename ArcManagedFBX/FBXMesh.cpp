@@ -81,10 +81,21 @@ ARC_INLINE void ArcManagedFBX::FBXMesh::SetPolygonGroup(int32 polygonIndex,int32
 	this->GetFBXMesh()->SetPolygonGroup(polygonIndex,group);
 }
 
-bool ArcManagedFBX::FBXMesh::GetPolygonVertexNormal(int32 polygonIndex, int32 vertexIndex, FBXVector^ normal)
+FBXVector ArcManagedFBX::FBXMesh::GetPolygonVertexNormal2(int32 polygonIndex, int32 vertexIndex)
 {
-	return false;
-	//return this->GetFBXMesh()->GetPolygonVertexNormal(polygonIndex,vertexIndex);
+	FbxVector4 fbxNormal;
+	bool result = this->GetFBXMesh()->GetPolygonVertexNormal(polygonIndex, vertexIndex, fbxNormal);
+
+	return FBXVector(fbxNormal);
+}
+
+FBXVector ArcManagedFBX::FBXMesh::GetPolygonVertexUV2(int32 polygonindex, int32 vertexindex, String^ uvSetName)
+{
+	FbxVector2 fbxUV;
+	bool unMapped;
+	const char* nativeName = StringHelper::ToNative(uvSetName);
+	bool result = this->GetFBXMesh()->GetPolygonVertexUV(polygonindex, vertexindex, nativeName, fbxUV, unMapped);
+	return FBXVector(fbxUV.mData[0], fbxUV.mData[1], fbxUV.mData[2], fbxUV.mData[3]); // FBXVector(UV);
 }
 
 void ArcManagedFBX::FBXMesh::EndPolygon()
@@ -114,22 +125,22 @@ array<int>^ ArcManagedFBX::FBXMesh::GetPolygonVertices()
 	return vertexOutput;
 }
 
-bool ArcManagedFBX::FBXMesh::GetPolygonVertexUVs(String^ uvSetName, array<FBXVector>^ uvs, array<int>^ unMappedUVId)
-{
-	return false;
-}
-
-bool ArcManagedFBX::FBXMesh::GetPolygonVertexUV(int32 polygonindex, int32 vertexindex, String^ uvSetName, FBXVector uv, bool^ unmapped)
-{
-	return false;
-}
+//bool ArcManagedFBX::FBXMesh::GetPolygonVertexUVs(String^ uvSetName, array<FBXVector>^ uvs, array<int>^ unMappedUVId)
+//{
+//	return false;
+//}
+//
+//bool ArcManagedFBX::FBXMesh::GetPolygonVertexUV(int32 polygonindex, int32 vertexindex, String^ uvSetName, FBXVector uv, bool^ unmapped)
+//{
+//	return false;
+//}
 
 // This is going to require some work as we convert between an fbx array and a CLI array that is to be used for returning to the consumer.
-bool ArcManagedFBX::FBXMesh::GetPolygonVertexNormals(array<FBXVector>^% normals)
-{	
-	// TODO: Implement this
-	return false;
-}
+//bool ArcManagedFBX::FBXMesh::GetPolygonVertexNormals(array<FBXVector>^% normals)
+//{	
+//	// TODO: Implement this
+//	return false;
+//}
 
 
 int ArcManagedFBX::FBXMesh::RemoveBadPolygons()
