@@ -63,6 +63,9 @@ namespace ArcManagedFBX
 
 		//bool GetPolygonVertexUVs(String^ uvSetName, array<FBXVector>^ uvs, array<int>^ unMappedUVId);
 
+		//bool GetMaterialIndices(FbxLayerElementArrayTemplate<int>** pLockableArray) const;
+		//bool GetTextureIndices(FbxLayerElementArrayTemplate<int>** pLockableArray, FbxLayerElement::EType pTextureType) const;
+
 		bool GenerateTangetsData(String^ uvSetName, bool overWrite);
 
 		int RemovePolygon(int32 polygonIndex);
@@ -76,6 +79,11 @@ namespace ArcManagedFBX
 		int32 RemoveBadPolygons();
 
 		int32 GetControlPointsCount();
+
+		array<int32>^ FBXMesh::GetPolygonMaterialIndices();
+
+		array<int32>^ GetPolygonTextureIndices(int32 type);
+
 
 		ARC_DEFAULT_INTERNAL_CONSTRUCTOR(FBXMesh,FbxMesh)
 	private:

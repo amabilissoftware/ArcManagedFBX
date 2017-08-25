@@ -26,6 +26,9 @@ namespace ArcManagedFBX
 
 		bool RemoveMaterial(FBXSurfaceMaterial^ material);
 
+		int GetMaterialCount();
+		FBXSurfaceMaterial^ GetMaterial(int pIndex);
+
 		// Add a child node to this node.
 		void AddChild(FBXNode^ Node);
 

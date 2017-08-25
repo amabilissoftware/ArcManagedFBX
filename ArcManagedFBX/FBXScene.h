@@ -4,6 +4,7 @@
 
 #include "FBXNode.h"
 #include "FBXDocument.h"
+#include "FBXTexture.h"
 
 using namespace System;
 using namespace System::Text;
@@ -19,6 +20,10 @@ namespace ArcManagedFBX
 		FBXScene();
 		virtual ~FBXScene();
 		!FBXScene();
+
+		int GetTextureCount();
+
+		FBXTexture^ GetTexture(int32 pIndex);
 
 		int32 CreateCharacter(String^ pName);
 

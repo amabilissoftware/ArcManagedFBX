@@ -36,6 +36,18 @@ bool FBXNode::RemoveMaterial(FBXSurfaceMaterial^ material)
 	return this->GetFBXNode()->RemoveMaterial(material->GetFBXSurfaceMaterial());
 }
 
+int ArcManagedFBX::FBXNode::GetMaterialCount()
+{
+	ARC_CHECK_AND_THROW(this->GetFBXNode() == nullptr, "This FBX node has not been properly initialized. Check and try again")
+
+		return this->GetFBXNode()->GetMaterialCount();
+}
+
+FBXSurfaceMaterial ^ ArcManagedFBX::FBXNode::GetMaterial(int pIndex)
+{
+	return gcnew FBXSurfaceMaterial(this->GetFBXNode()->GetMaterial(pIndex));
+}
+
 void FBXNode::AddChild(FBXNode^ node)
 {
 	ARC_CHECK_AND_THROW(node == nullptr || node->GetFBXNode() == nullptr, "This FBX node has not been properly initialized. Check and try again")

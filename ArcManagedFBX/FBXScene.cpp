@@ -39,6 +39,16 @@ void FBXScene::DestroyCharacter(int32 pIndex)
 	this->GetFBXScene()->DestroyCharacter(pIndex);
 }
 
+int ArcManagedFBX::FBXScene::GetTextureCount()
+{
+	return this->GetFBXScene()->GetTextureCount();
+}
+
+FBXTexture^ ArcManagedFBX::FBXScene::GetTexture(int32 pIndex)
+{
+	return gcnew FBXTexture(this->GetFBXScene()->GetTexture(pIndex));
+}
+
 int32 FBXScene::CreateCharacter(String^ pName)
 {
 	ARC_CHECK_AND_THROW(m_NativeObject == nullptr, "The native instance of this object is null. Check and try again.");
